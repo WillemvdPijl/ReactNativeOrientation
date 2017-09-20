@@ -1,1 +1,8 @@
+Crash course React Native
 https://www.youtube.com/watch?v=mkualZPRZCs
+
+Environment variable Android SDK
+https://www.youtube.com/watch?v=YVaGbwQephg
+
+Local.properties file format
+https://stackoverflow.com/questions/27620262/sdk-location-not-found-define-location-with-sdk-dir-in-the-local-properties-fil
