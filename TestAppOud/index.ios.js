@@ -11,4 +11,4 @@ export default class testapp extends Component{
   }
 }
 
-AppRegistry.registerComponent('testapp', () => testapp);
+AppRegistry.registerComponent('Deck', () => Deck);
