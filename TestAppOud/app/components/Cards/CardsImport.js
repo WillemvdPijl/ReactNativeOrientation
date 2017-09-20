@@ -18,7 +18,7 @@ renderCard(item) {
       <Card style={styles.card}> 
       <Image
         style={{flex: 1}}
-        source={{uri: item.profilePic}}
+        source={item.profilePic}
         />
         <View style={{margin:14}}>
             <Text style={{fontSize:23}}>item.name, item.age</Text>
