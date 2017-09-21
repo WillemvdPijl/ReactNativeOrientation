@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View, Image, Animated, StyleSheet} from 'react-native';
+import { Card, Button } from 'react-native-elements';
+
 
 import Deck from './app/components/deck/Deck';
 
 
 const DATA = 
 [
-    {id:1, name:'Robbie', age:42, profilePic: require('https://graph.facebook.com/100010180758876/picture?height=500'), profession:'Villain'},
-    {id:2, name:'Manuel', age:20, profilePic: require('https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/11223796_1099444626750217_5734865048080103005_n.jpg?oh=b22815e53f4a2cee526b328d8c3f3ba7&oe=5A3A8807'), profession:'IT support'},
-    {id:3, name:'Treinuel', age:420, profilePic: require('https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-0/p200x200/11695860_1004125059621380_6236011119404209496_n.jpg?oh=cd2881b623c6d88a3f1d7ed820084231&oe=5A58A32A'), profession:'Train'},
-    {id:4, name:'Melliw', age:20, profilePic: require('https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/15109565_1235881033117170_4347838544336132638_n.jpg?oh=ee0eb7a80e4533b20cabd3beadacdd61&oe=5A5D8B5C'), profession:'Ved'},
-    {id:5, name:'Willem', age:20, profilePic: require('https://scontent-amt2-1.xx.fbcdn.net/v/t31.0-8/21199563_1666203753413504_439766361926865594_o.jpg?oh=05b10e68052fdcf931e362c8a26a01e8&oe=5A5FAF4F'), profession:'Dev'},
+    {id:1, name:'Robbie', age:42, uri: 'https://graph.facebook.com/100010180758876/picture?height=500', profession:'Villain'},
+    {id:2, name:'Pirate Robbie', age:42, uri: 'http://i0.kym-cdn.com/entries/icons/facebook/000/000/358/YouAreAPirate.jpg', profession:'Pirate'},
+    {id:3, name:'Treinuel', age:420, uri: 'https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-0/p200x200/11695860_1004125059621380_6236011119404209496_n.jpg?oh=cd2881b623c6d88a3f1d7ed820084231&oe=5A58A32A', profession:'Train'},
+    {id:4, name:'Melliw', age:20, uri: 'https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/15109565_1235881033117170_4347838544336132638_n.jpg?oh=ee0eb7a80e4533b20cabd3beadacdd61&oe=5A5D8B5C', profession:'Ved'},
+    {id:5, name:'Sportaflop', age:52, uri: 'http://www.cartoonito.co.uk/sites/ciuk/files/pictures-wallpapers/downloads/lazytown-wallpaper-1024x768-1.jpg', profession:'Superhero'},
+    {id:6, name:'Grandma Robbie', age: 80, uri: 'http://img.sharetv.com/shows/episodes/standard/1052195.jpg', profession:'Knitting'}
     
 ];
 
@@ -18,17 +21,38 @@ export default class Tinder extends Component{
 
   renderCard(item){
     return(
-      <View style={styles.card}> 
-      <Image
-        style={{flex: 1}}
-        source={item.profilePic}
-        />
-        <View style={{margin:14}}>
-            <Text style={{fontSize:23}}>{item.name}, {item.age}</Text>
-            <Text  style={{fontSize:20, color:'darkgrey'}}>{item.profession}</Text>
-        </View>
-    </View>
-    )
+      <Card  key={item.id} style={{height: 400, margin: 10, marginTop: 160, borderWidth: 1,
+      borderColor: 'lightgrey', overflow: 'hidden', borderRadius: 9, backgroundColor: 'white'}}
+         >
+         <Image source={{ uri: item.uri}} style={{height: 300, overflow: 'hidden'}}  />
+      
+      <Text style={{fontSize:25, marginBottom: 5, marginLeft: 5, color: 'black' }}>
+          {item.name}, {item.age}
+          </Text>
+
+        <Text style={{fontSize:18, marginBottom: 10, marginLeft: 5 }}>
+          {item.profession}
+          </Text>
+
+        </Card>
+    );
+}
+
+renderNoMoreCards(){
+  return(
+    <Card style={{height: 400, margin: 10, marginTop: 160, borderWidth: 1,
+      borderColor: 'lightgrey', overflow: 'hidden', borderRadius: 9}}>
+      <Image source={{ uri: 'http://images6.fanpop.com/image/photos/39900000/Robbie-Rotten-lazytown-39902601-500-281.png'}} style={{height: 300, overflow: 'hidden'}}  />
+      
+    <Text style={{fontSize:25, marginBottom: 5, marginLeft: 5, color: 'black' }}
+    >All Done</Text>
+    
+    <Text style={{fontSize:18, marginBottom: 10, marginLeft: 5 }}>
+      There are no more Robbies left!
+      </Text>
+      </Card>
+      
+  );
 }
 
 
@@ -38,6 +62,7 @@ export default class Tinder extends Component{
         <Deck
           data={DATA}
           renderCard={this.renderCard}
+          renderNoMoreCards={this.renderNoMoreCards}
         />
         </View>
     );
