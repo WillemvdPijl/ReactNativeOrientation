@@ -1,10 +1,11 @@
+import api from './utilities/api';
 import React, {Component} from 'react';
 import {AppRegistry, Text, View, Image, Animated, StyleSheet} from 'react-native';
 import { Card, Button } from 'react-native-elements';
 
 
 import Deck from './app/components/deck/Deck';
-
+/*
 
 const DATA = 
 [
@@ -15,9 +16,24 @@ const DATA =
     {id:5, name:'Sportaflop', age:52, uri: 'http://www.cartoonito.co.uk/sites/ciuk/files/pictures-wallpapers/downloads/lazytown-wallpaper-1024x768-1.jpg', profession:'Superhero'},
     {id:6, name:'Grandma Robbie', age: 80, uri: 'http://img.sharetv.com/shows/episodes/standard/1052195.jpg', profession:'Knitting'}
     
-];
+]; */
 
 export default class Tinder extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      data: [],
+    }
+  }
+
+
+  returnData(){
+    if (this.state.data.length > 0){
+      return this.state.data
+    }else{
+      return [ {id:99, name:'Error', age: 404, uri: 'https://yt3.ggpht.com/-LlVT2pBDE_o/AAAAAAAAAAI/AAAAAAAAAAA/7tIXvJIQn50/s88-c-k-no-mo-rj-c0xffffff/photo.jpg', profession:'No cards found!'}]
+    }
+  }
 
   renderCard(item){
     return(
@@ -57,10 +73,14 @@ renderNoMoreCards(){
 
 
   render(){
+    api.getData().then((result) => {this.setState({
+      data: result,
+    })
+  })
     return(
       <View style={{uri: styles.container}}>
         <Deck
-          data={DATA}
+          data={this.returnData()}
           renderCard={this.renderCard}
           renderNoMoreCards={this.renderNoMoreCards}
         />
